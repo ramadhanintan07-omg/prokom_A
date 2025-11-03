@@ -1,0 +1,51 @@
+nama = input('Nama: ')
+NIM = input('NIM: ')
+print('PIN adalah 4 digit terakhir NIM anda')
+pin = NIM[6:]
+tes = 3
+
+while tes > 0:
+    pw = input('PIN: ').strip()
+    if pw == pin:
+        print('=== Harga tiket film yang tersedia ===')
+        print('Film 1 = 50.000')
+        print('Film 2 = 30.000')
+        print('Film 3 = 40.000')
+        print('Film 4 = 35.000')
+        film = input('Masukkan no film: ')
+        tiket = int(input('Jumlah tiket: '))
+
+        if film == '1':
+            f = 'Film 1'
+            h = 50000
+        elif film == '2':
+            f = 'Film 2'
+            h = 30000
+        elif film == '3':
+            f = 'Film 3'
+            h = 40000
+        elif film == '4':
+            f = 'Film 4'
+            h = 35000
+        else:
+            print('Pilihan tidak tersedia')
+            continue
+
+        tot = h * tiket
+        print('Film yang anda pilih adalah', f, 'dengan harga total Rp', tot)
+
+        TB = input('Apakah anda ingin melakukan transaksi lagi? (ya/tidak): ').strip().lower()
+        if TB == 'ya':
+            continue
+        elif TB == 'tidak':
+            break
+        else:
+            print('Pilihan tidak tersedia')
+
+    else:
+        tes -= 1
+        print('PIN salah')
+        if tes > 0:
+            print('Sisa kesempatan anda', tes)
+        else:
+            print('Maaf, kesempatan memasukkan PIN telah habis')
