@@ -1,51 +1,59 @@
 nama = input('Nama: ')
 NIM = input('NIM: ')
-print('PIN adalah 4 digit terakhir NIM anda')
-pin = NIM[6:]
-tes = 3
+asisten = input('Nama asisten: ')
+kel = input('Kelompok: ')
 
-while tes > 0:
-    pw = input('PIN: ').strip()
-    if pw == pin:
-        print('=== Harga tiket film yang tersedia ===')
-        print('Film 1 = 50.000')
-        print('Film 2 = 30.000')
-        print('Film 3 = 40.000')
-        print('Film 4 = 35.000')
-        film = input('Masukkan no film: ')
-        tiket = int(input('Jumlah tiket: '))
+print('')
+print('Pilih metode pembayaran')
+print('Tunai : A')
+print('Qris  : B')
+print('Debit : C')
 
-        if film == '1':
-            f = 'Film 1'
-            h = 50000
-        elif film == '2':
-            f = 'Film 2'
-            h = 30000
-        elif film == '3':
-            f = 'Film 3'
-            h = 40000
-        elif film == '4':
-            f = 'Film 4'
-            h = 35000
-        else:
-            print('Pilihan tidak tersedia')
-            continue
+metode = input('Pembayaran: ')
 
-        tot = h * tiket
-        print('Film yang anda pilih adalah', f, 'dengan harga total Rp', tot)
+T = NIM[6:9]
+TB = int(T) * 1000
 
-        TB = input('Apakah anda ingin melakukan transaksi lagi? (ya/tidak): ').strip().lower()
-        if TB == 'ya':
-            continue
-        elif TB == 'tidak':
-            break
-        else:
-            print('Pilihan tidak tersedia')
+M = int(NIM[-1])
 
-    else:
-        tes -= 1
-        print('PIN salah')
-        if tes > 0:
-            print('Sisa kesempatan anda', tes)
-        else:
-            print('Maaf, kesempatan memasukkan PIN telah habis')
+if M == 0:
+    sm = "Non Member"
+    d0 = "0%"
+    D = 0
+elif 1 <= M <= 4:
+    sm = "Silver"
+    d0 = "5%"
+    D = 5 / 100
+elif 5 <= M <= 7:
+    sm = "Gold"
+    d0 = "10%"
+    D = 10 / 100
+elif 8 <= M <= 9:
+    sm = "Platinum"
+    d0 = "15%"
+    D = 15 / 100
+else:
+    print('Mohon masukkan data NIM yang benar')
+
+if metode == "A":
+    tambah = 0
+    bayar = "Tunai"
+elif metode == "B":
+    tambah = 2500
+    bayar = "Qris"
+elif metode == "C":
+    tambah = 5000
+    bayar = "Debit"
+else:
+    print('Masukkan metode pembayaran sesuai format dan huruf besar')
+
+print('')
+DM = TB * D
+TD = TB - DM + tambah
+
+print('=== HASIL PERHITUNGAN BELANJAAN ===')
+print('Total belanjaan awal (Rp):', TB)
+print('Status membership:', sm)
+print('Diskon karena membership:', d0, '→ Berkurang Rp', DM)
+print('Pembayaran dilakukan secara:', bayar)
+print('Total belanjaan seluruhnya (Rp):', TD)
